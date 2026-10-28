@@ -1,0 +1,44 @@
+
+# ==========================================
+# FutbolWebApp - DataFlex 2026
+# ==========================================
+
+# Credenciales de MySQL y DataFlex
+Data/DFConnId.ini
+Data/connection.ini
+Data/ConnectionIds.ini
+AppSrc/LoginEncryptionKey.inc
+
+# Archivos compilados
+Programs/*.exe
+Programs/*.dll
+Programs/*.dbg
+Programs/*.pdb
+
+# Dependencias generadas por DataFlex
+DfPkg/
+
+# Archivos temporales
+*.log
+*.tmp
+
+# Cache de DataFlex
+Data/*.x64.cch
+
+# Datos locales de la aplicacion
+Data/*.dat
+Data/*.hdr
+Data/*.k1
+Data/*.k2
+Data/*.k3
+
+# Archivos de registro
+Data/*.log
+
+# Archivos generados por DataFlex
+AppSrc/*.x64.dep
+AppSrc/*.x64.prn
+
+# Configuracion local
+Programs/Config.ws
+IdeSrc/Workspace.loc
