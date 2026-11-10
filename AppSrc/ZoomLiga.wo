@@ -72,20 +72,7 @@ Object oZoomLiga is a cWebView
             Set peLabelPosition to lpTop
             Set psLabel to "EquiposMax"
         End_Object
-        
-           Object oVerEquipos is a cWebButton
-            Set psCaption to "Ver equipos"
-            Set piColumnSpan to 3
-            Set piColumnIndex to 0
-
-            WebRegisterPath ntNavigateForward oSelectEquipo
-
-            Procedure OnClick
-                Send NavigatePath
-            End_Procedure
-
-           End_Object
-           
+          
         Object oListaEquipos is a cWebList
             Set Server to oequipo_DD
             Set piColumnSpan to 12
