@@ -31,7 +31,6 @@ Object oSelectLiga is a cWebView
         Set piColumnSpan to 0
         Set psCSSClass to "MobileList"
         Set pbServerOnRowClick to True
-        Set pbFillHeight to True
         Set pbFillHeight to False
         Set piHeight to 220
         Set pbShowHeader to True
