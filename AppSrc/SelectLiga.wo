@@ -31,31 +31,32 @@ Object oSelectLiga is a cWebView
         Set piColumnSpan to 0
         Set psCSSClass to "MobileList"
         Set pbServerOnRowClick to True
-        Set pbFillHeight to True
-        Set pbShowHeader to False
+        Set pbFillHeight to False
+        Set piHeight to 220
+        Set pbShowHeader to True
         Set piSortColumn to 0
 
         Object oligaNombre is a cWebColumn
             Entry_Item liga.Nombre
-            Set psCaption to "liga.Nombre"
+            Set psCaption to "Liga"
             Set piWidth to 1494
         End_Object 
 
         Object oligaPais is a cWebColumn
             Entry_Item liga.Pais
-            Set psCaption to "liga.Pais"
+            Set psCaption to "País"
             Set piWidth to 747
         End_Object 
 
         Object oligaEquipos is a cWebColumn
             Entry_Item liga.Equipos
-            Set psCaption to "liga.Equipos"
+            Set psCaption to "Equipos"
             Set piWidth to 149
         End_Object 
 
         Object oligaEquiposMax is a cWebColumn
             Entry_Item liga.EquiposMax
-            Set psCaption to "liga.EquiposMax"
+            Set psCaption to "Máx"
             Set piWidth to 149
         End_Object 
 

@@ -1,15 +1,15 @@
-﻿// C:\DataFlex Projects\FutbolWebApp\AppSrc\ZoomEquipo.wo
-// Detalle de equipos
-//
-
 Use cWebView.pkg
 Use cWebPanel.pkg
 Use cWebMenuGroup.pkg
 Use cWebMenuItem.pkg
 Use cWebForm.pkg
+Use cWebParentCombo.pkg
+Use cWebList.pkg
+Use cWebColumn.pkg
 
 Use cligaDataDictionary.dd
 Use cequipoDataDictionary.dd
+Use cjugadorDataDictionary.dd
 
 Object oZoomEquipo is a cWebView
     Set piColumnCount to 12
@@ -21,15 +21,19 @@ Object oZoomEquipo is a cWebView
     Set piMaxWidth to 1024
 
     Object oliga_DD is a cligaDataDictionary
-    End_Object 
+    End_Object
 
     Object oequipo_DD is a cequipoDataDictionary
-        Set DDO_Server To oliga_DD
-    End_Object 
+        Set DDO_Server to oliga_DD
+    End_Object
 
-    Set Main_DD To oequipo_DD
-    Set Server  To oequipo_DD
+    Object ojugador_DD is a cjugadorDataDictionary
+        Set DDO_Server to oequipo_DD
+        Set Constrain_File to equipo.File_Number
+    End_Object
 
+    Set Main_DD to oequipo_DD
+    Set Server to oequipo_DD
 
     Object oWebMainPanel is a cWebPanel
         Set piColumnCount to 12
@@ -41,16 +45,45 @@ Object oZoomEquipo is a cWebView
             Set piColumnIndex to 0
             Set peLabelPosition to lpTop
             Set psLabel to "Nombre"
-        End_Object 
+        End_Object
 
-        Object oligaID is a cWebForm
-            Entry_Item liga.ID
+        Object oligaID is a cWebParentCombo
+            Entry_Item liga.Nombre
             Set piColumnSpan to 3
             Set piColumnIndex to 0
             Set peLabelPosition to lpTop
-            Set psLabel to "LigaID"
-        End_Object 
-    End_Object 
+            Set psLabel to "Liga"
+        End_Object
+
+        Object oListaJugadores is a cWebList
+            Set Server to ojugador_DD
+            Set piColumnSpan to 12
+            Set piColumnIndex to 0
+            Set piHeight to 220
+            Set piSortColumn to 0
+            Set pbShowHeader to True
+
+            Object oNombreJugador is a cWebColumn
+                Entry_Item jugador.Nombre
+                Set psCaption to "Nombre"
+                Set piWidth to 200
+            End_Object
+
+            Object oApellidoJugador is a cWebColumn
+                Entry_Item jugador.Apellido
+                Set psCaption to "Apellido"
+                Set piWidth to 200
+            End_Object
+
+            Object oNacionalidadJugador is a cWebColumn
+                Entry_Item jugador.Nacionalidad
+                Set psCaption to "Nacionalidad"
+                Set piWidth to 160
+            End_Object
+
+        End_Object
+
+    End_Object
 
     Object oActionGroup is a cWebMenuGroup
 
@@ -62,7 +95,7 @@ Object oZoomEquipo is a cWebView
                 Send Request_Save
             End_Procedure
 
-        End_Object 
+        End_Object
 
         Object oEditBtn is a cWebMenuItem
             Set psCSSClass to "WebEditMenuItem"
@@ -72,7 +105,7 @@ Object oZoomEquipo is a cWebView
                 Send SetActionButtons
             End_Procedure
 
-        End_Object 
+        End_Object
 
         Object oDeleteBtn is a cWebMenuItem
             Set psCSSClass to "WebDeleteMenuItem"
@@ -83,7 +116,7 @@ Object oZoomEquipo is a cWebView
                 Send Request_Delete
             End_Procedure
 
-        End_Object 
+        End_Object
 
         Object oCancelChangesBtn is a cWebMenuItem
             Set psCSSClass to "WebIcon_Refresh"
@@ -93,8 +126,9 @@ Object oZoomEquipo is a cWebView
                 Send RefreshRecord
             End_Procedure
 
-        End_Object 
-    End_Object 
+        End_Object
+
+    End_Object
 
     Procedure SetActionButtons
         tWebNavigateData NavigateData
@@ -153,4 +187,4 @@ Object oZoomEquipo is a cWebView
 
     End_Procedure
 
-End_Object 
+End_Object

@@ -6,7 +6,7 @@ Open jugador
 Open liga
 
 Class cequipoDataDictionary is a DataDictionary
-    
+
     Procedure Construct_Object
         Forward Send Construct_Object
         Set Main_File to equipo.File_Number
@@ -21,6 +21,21 @@ Class cequipoDataDictionary is a DataDictionary
         Set Foreign_Field_Option DD_INDEXFIELD DD_NOPUT to True
         Set Foreign_Field_Option DD_DEFAULT DD_DISPLAYONLY to True
 
+        Set Protect_Key_State to True
+        Set Key_Field_State Field equipo.ID to True
+        Set Field_Option Field equipo.Nombre DD_COMMIT to True
+        Set Field_Option Field equipo.Nombre DD_REQUIRED to True
+
+    End_Procedure
+
+    Procedure Update
+        Forward Send Update
+        Move (liga.Equipos + 1) to liga.Equipos
+    End_Procedure
+
+    Procedure Backout
+        Forward Send Backout
+        Move (liga.Equipos - 1) to liga.Equipos
     End_Procedure
 
 End_Class
