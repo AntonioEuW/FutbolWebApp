@@ -1,11 +1,17 @@
 ﻿Use DataDict.pkg
+Use DDValtbl.pkg
 
 Open jugador
 Open jugadorposicion
 Open equipo
 
+Object oNacionalidadJugadorVT is a CodeValidationTable
+    Set Type_Value to "NACIONAL"
+    Set Allow_Blank_State to True
+End_Object
+
 Class cjugadorDataDictionary is a DataDictionary
-    
+
     Procedure Construct_Object
         Forward Send Construct_Object
         Set Main_File to jugador.File_Number
@@ -18,6 +24,16 @@ Class cjugadorDataDictionary is a DataDictionary
         Set Foreign_Field_Option DD_KEYFIELD DD_FINDREQ to True
         Set Foreign_Field_Option DD_INDEXFIELD DD_NOPUT to True
         Set Foreign_Field_Option DD_DEFAULT DD_DISPLAYONLY to True
+
+        Set Protect_Key_State to True
+        Set Key_Field_State Field jugador.ID to True
+        Set Field_Option Field jugador.Nombre DD_COMMIT to True
+        Set Field_Option Field jugador.Apellido DD_COMMIT to True
+
+        Set Field_Option Field jugador.Nombre DD_REQUIRED to True
+        Set Field_Option Field jugador.Apellido DD_REQUIRED to True
+
+        Set Field_Value_Table Field jugador.Nacionalidad to oNacionalidadJugadorVT
 
     End_Procedure
 

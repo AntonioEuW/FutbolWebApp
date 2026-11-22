@@ -1,10 +1,10 @@
-﻿Use DataDict.pkg
+Use DataDict.pkg
 
 Open liga
 Open equipo
 
 Class cligaDataDictionary is a DataDictionary
-    
+
     Procedure Construct_Object
         Forward Send Construct_Object
         Set Main_File to liga.File_Number
@@ -16,6 +16,12 @@ Class cligaDataDictionary is a DataDictionary
         Set Foreign_Field_Option DD_INDEXFIELD DD_NOPUT to True
         Set Foreign_Field_Option DD_DEFAULT DD_DISPLAYONLY to True
 
-    End_Procedure
+        Set Protect_Key_State to True
+        Set Key_Field_State Field liga.ID to True
+        Set Field_Option Field liga.Nombre DD_COMMIT to True
 
+        Set Field_Option Field liga.Nombre DD_REQUIRED to True
+        Set Field_Option Field liga.Pais DD_REQUIRED to True
+
+    End_Procedure
 End_Class

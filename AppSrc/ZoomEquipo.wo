@@ -1,12 +1,9 @@
-﻿// C:\DataFlex Projects\FutbolWebApp\AppSrc\ZoomEquipo.wo
-// Detalle de equipos
-//
-
 Use cWebView.pkg
 Use cWebPanel.pkg
 Use cWebMenuGroup.pkg
 Use cWebMenuItem.pkg
 Use cWebForm.pkg
+Use cWebParentCombo.pkg
 Use cWebList.pkg
 Use cWebColumn.pkg
 
@@ -38,7 +35,6 @@ Object oZoomEquipo is a cWebView
     Set Main_DD to oequipo_DD
     Set Server to oequipo_DD
 
-
     Object oWebMainPanel is a cWebPanel
         Set piColumnCount to 12
         WebSetResponsive piColumnCount rmMobile to 4
@@ -49,15 +45,16 @@ Object oZoomEquipo is a cWebView
             Set piColumnIndex to 0
             Set peLabelPosition to lpTop
             Set psLabel to "Nombre"
-        End_Object 
+        End_Object
 
-        Object oligaID is a cWebForm
-            Entry_Item liga.ID
+        Object oligaID is a cWebParentCombo
+            Entry_Item liga.Nombre
             Set piColumnSpan to 3
             Set piColumnIndex to 0
             Set peLabelPosition to lpTop
-            Set psLabel to "LigaID"
-        End_Object 
+            Set psLabel to "Liga"
+        End_Object
+
         Object oListaJugadores is a cWebList
             Set Server to ojugador_DD
             Set piColumnSpan to 12
@@ -85,8 +82,8 @@ Object oZoomEquipo is a cWebView
             End_Object
 
         End_Object
-        
-    End_Object 
+
+    End_Object
 
     Object oActionGroup is a cWebMenuGroup
 
@@ -98,7 +95,7 @@ Object oZoomEquipo is a cWebView
                 Send Request_Save
             End_Procedure
 
-        End_Object 
+        End_Object
 
         Object oEditBtn is a cWebMenuItem
             Set psCSSClass to "WebEditMenuItem"
@@ -108,7 +105,7 @@ Object oZoomEquipo is a cWebView
                 Send SetActionButtons
             End_Procedure
 
-        End_Object 
+        End_Object
 
         Object oDeleteBtn is a cWebMenuItem
             Set psCSSClass to "WebDeleteMenuItem"
@@ -119,7 +116,7 @@ Object oZoomEquipo is a cWebView
                 Send Request_Delete
             End_Procedure
 
-        End_Object 
+        End_Object
 
         Object oCancelChangesBtn is a cWebMenuItem
             Set psCSSClass to "WebIcon_Refresh"
@@ -129,8 +126,9 @@ Object oZoomEquipo is a cWebView
                 Send RefreshRecord
             End_Procedure
 
-        End_Object 
-    End_Object 
+        End_Object
+
+    End_Object
 
     Procedure SetActionButtons
         tWebNavigateData NavigateData
@@ -189,4 +187,4 @@ Object oZoomEquipo is a cWebView
 
     End_Procedure
 
-End_Object 
+End_Object
